@@ -1,0 +1,27 @@
+<div class="site-navbar">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="">KANBAN</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <ul class="nav navbar-nav">
+          <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="tags">Gestion des tags</a></li>
+          <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="users">Gestion des utilisateurs</a></li>
+          <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="fiches">Gestion des fiches</a></li>
+          <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="sections">Gestion des sections</a></li>
+<!--          <li *ngIf="status" routerLinkActive="active"><a class="btn btn-danger" (click)="onSignOut()">Déconnexion</a></li>-->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="site-mobile-menu bg-secondary">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close mt-3">
+      <span class="icon-close2 js-menu-toggle"></span>
+    </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div> <!-- .site-mobile-menu -->

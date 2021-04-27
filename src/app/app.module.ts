@@ -14,6 +14,7 @@ import { SectionComponent } from './section/section.component';
 import { UserComponent } from './user/user.component';
 import { FicheComponent } from './fiche/fiche.component';
 import { MComponent } from './m/m.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'board', pathMatch: 'full'},
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
     MatSliderModule,
     RouterModule,
     HttpClientModule,
+    DragDropModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

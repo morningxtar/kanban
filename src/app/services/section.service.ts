@@ -19,5 +19,17 @@ export class SectionService {
     return this.httpClient.get<Array<SectionModel>>(this.devHost + '/sections');
   }
 
+  saveSection(data): Observable<SectionModel> {
+    return this.httpClient.post<SectionModel>(this.devHost + '/sections', data);
+  }
+
+  updateSection(data): Observable<SectionModel> {
+    return this.httpClient.put<SectionModel>(this.devHost + '/sections', data);
+  }
+
+  deleteSection(url): Observable<SectionModel> {
+    return this.httpClient.delete<SectionModel>(url);
+  }
+
 
 }

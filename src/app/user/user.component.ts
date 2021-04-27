@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TagService} from '../services/tag.service';
 import {Router} from '@angular/router';
 import {TagModel} from '../models/tag.model';
 import {UserService} from '../services/user.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -18,12 +19,10 @@ export class UserComponent implements OnInit {
     this.getUsers();
   }
 
-  // @ts-ignore
-  getUsers(): Array<TagModel> {
+  getUsers = (): void => {
     this.userService.getUsers()
       .subscribe(value => {
         console.log(value);
-        return value;
       }, error => {
         console.log(error);
       });

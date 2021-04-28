@@ -15,6 +15,17 @@ import { UserComponent } from './user/user.component';
 import { FicheComponent } from './fiche/fiche.component';
 import { MComponent } from './m/m.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatButtonModule} from '@angular/material/button';
+// @ts-ignore
+import { TranslocoRootModule } from './transloco/transloco-root.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'board', pathMatch: 'full'},
@@ -35,16 +46,29 @@ const appRoutes: Routes = [
     UserComponent,
     FicheComponent,
     MComponent,
+
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatCardModule,
     MatSliderModule,
     RouterModule,
     HttpClientModule,
     DragDropModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatSnackBarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    // TranslocoRootModule
   ],
   providers: [],
   bootstrap: [AppComponent]

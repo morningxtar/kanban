@@ -1,10 +1,35 @@
-<div class="p-d-inline" style="display: inline-block" *ngFor="let section of Section">
+<!--<form (ngSubmit)="addTask()" [formGroup]="taskForm">-->
+<!--  <mat-form-field>-->
+<!--    <mat-label>Add new task</mat-label>-->
+<!--    <input [formControl]="task" matInput placeholder="Some task">-->
+<!--  </mat-form-field>-->
+<!--  <button type="submit" mat-raised-button color="accent">{{ 'add-task'}}</button>-->
+<!--</form>-->
+
+<div class="" style="display: inline-block" *ngFor="let section of Section">
   <div class="drag-container">
-    <div class="section-heading">Section {{section.id}}</div>
+    <div class="section-heading">{{section.id}}</div>
 
     <div cdkDropList id="{{section.id}}" [cdkDropListData]="section.sectionlist"
          [cdkDropListConnectedTo]="connectedTo" class="item-list" (cdkDropListDropped)="drop($event)">
-      <div class="item-box" *ngFor="let sectionItem of section.sectionlist" cdkDrag>section {{section.id}} {{sectionItem}}</div>
+        <mat-card class="mat-card-box" *ngFor="let sectionItem of section.sectionlist" cdkDrag>
+          <mat-card-title>{{sectionItem.Libelle}}</mat-card-title>
+          <mat-card-content>
+            <div> user: {{sectionItem.user.Nom}}</div>
+          </mat-card-content>
+        </mat-card>
+
+      <!--<button (click)="deleteItem(.key, item, itemIndex)" mat-icon-button><mat-icon>close</mat-icon></button>-->
     </div>
   </div>
+<!--  <div cdkDropList *ngFor="let list of lists | keyvalue"-->
+<!--       [cdkDropListData]="list.value"-->
+<!--       class="list"-->
+<!--       (cdkDropListDropped)="drop($event)">-->
+<!--    &lt;!&ndash;<h2>{{ list.key | transloco }}</h2>&ndash;&gt;-->
+<!--    <div class="list-content" *ngFor="let item of list.value; let itemIndex = index" cdkDrag>-->
+<!--      <span>{{item}}</span>-->
+<!--     &lt;!&ndash; <button (click)="deleteItem(list.key, item, itemIndex)" mat-icon-button><mat-icon>close</mat-icon></button>&ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>-->
 </div>

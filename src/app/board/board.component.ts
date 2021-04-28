@@ -12,15 +12,15 @@ import {Router} from '@angular/router';
 })
 export class BoardComponent implements OnInit {
 
-  weeks = [];
+  Section = [];
   connectedTo = [];
   fiches;
 
   constructor(private ficheService: FicheService, private router: Router) {
-    this.weeks = [
+    this.Section = [
       {
-        id: 'week-1',
-        weeklist: [
+        id: 'To Do',
+        sectionlist: [
           'item 1',
           'item 2',
           'item 3',
@@ -28,8 +28,8 @@ export class BoardComponent implements OnInit {
           'item 5'
         ]
       }, {
-        id: 'week-2',
-        weeklist: [
+        id: 'Doing',
+        sectionlist: [
           'item 1',
           'item 2',
           'item 3',
@@ -37,8 +37,8 @@ export class BoardComponent implements OnInit {
           'item 5'
         ]
       }, {
-        id: 'week-3',
-        weeklist: [
+        id: 'Done',
+        sectionlist: [
           'item 1',
           'item 2',
           'item 3',
@@ -47,8 +47,8 @@ export class BoardComponent implements OnInit {
         ]
       }
     ];
-    for (const week of this.weeks) {
-      this.connectedTo.push(week.id);
+    for (const section of this.Section) {
+      this.connectedTo.push(section.id);
     }
   }
 

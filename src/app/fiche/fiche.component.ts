@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SectionService} from '../services/section.service';
 import {Router} from '@angular/router';
 import {TagModel} from '../models/tag.model';
@@ -13,6 +13,7 @@ import {FicheModel} from '../models/fiche.model';
 export class FicheComponent implements OnInit {
 
   fiches;
+
   constructor(private ficheService: FicheService, private router: Router) {
   }
 
@@ -21,8 +22,7 @@ export class FicheComponent implements OnInit {
     console.log(this.fiches);
   }
 
-  // @ts-ignore
-  getFiches(): Array<FicheModel> {
+  getFiches = (): void => {
     this.ficheService.getFiches()
       .subscribe(value => {
         console.log(value);

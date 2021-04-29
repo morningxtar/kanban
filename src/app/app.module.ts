@@ -25,9 +25,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
-// @ts-ignore
-import { TranslocoRootModule } from './transloco/transloco-root.module';
+import {MatListModule} from '@angular/material/list';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { EditTagComponent } from './tag/edit-tag/edit-tag.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { EditFicheComponent } from './board/edit-fiche/edit-fiche.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'board', pathMatch: 'full'},
@@ -48,6 +50,9 @@ const appRoutes: Routes = [
     UserComponent,
     FicheComponent,
     MComponent,
+    EditTagComponent,
+    DialogComponent,
+    EditFicheComponent,
 
   ],
   imports: [
@@ -70,10 +75,11 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatToolbarModule
-    // TranslocoRootModule
+    MatToolbarModule,
+    MatListModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }

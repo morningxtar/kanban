@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import * as Muuri from 'muuri';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import {FicheComponent} from '../fiche/fiche.component';
 import {FicheService} from '../services/fiche.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Subscription} from 'rxjs';
 import {SectionService} from '../services/section.service';
-import {log} from 'util';
+import {EditTagComponent} from '../tag/edit-tag/edit-tag.component';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {EditFicheComponent} from './edit-fiche/edit-fiche.component';
 
 @Component({
   selector: 'app-board',
@@ -28,15 +27,18 @@ export class BoardComponent implements OnInit {
     'd-title-done': []
   };
 
+  animal: string;
+  name: string;
 
   constructor(private ficheService: FicheService, private sectionService: SectionService, private router: Router, private formBuilder: FormBuilder,
-              private snackbar: MatSnackBar/*, private translocoService: TranslocoService*/) {
+              private snackbar: MatSnackBar, public dialog: MatDialog) {
     this.buildForm();
     // this.dir = this.translocoService.getActiveLang() === 'he' ? 'rtl' : 'ltr';
 
   }
 
   taskForm: FormGroup;
+
 
   buildForm = () => {
     this.taskForm = this.formBuilder.group({
@@ -63,6 +65,26 @@ export class BoardComponent implements OnInit {
     this.getFiches();
   }
 
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      id: 1,
+      title: 'Angular For Beginners'
+    };
+
+    this.dialog.open(EditFicheComponent, dialogConfig);
+
+    const dialogRef = this.dialog.open(EditFicheComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => console.log("Dialog output:", data)
+    );
+  }
+
   getFiches = (): void => {
     this.sectionService.getSections()
       .subscribe(value1 => {
@@ -80,7 +102,7 @@ export class BoardComponent implements OnInit {
             }
 
             for (let i = 0; i < value.length; i++) {
-              const index = this.Section.findIndex( fruit => fruit.id === value[i]['Section'].nomsection);
+              const index = this.Section.findIndex(fruit => fruit.id === value[i]['Section'].nomsection);
               this.Section[index].sectionlist.push(value[i]);
             }
             console.log(this.Section[0].sectionlist);

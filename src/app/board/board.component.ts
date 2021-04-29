@@ -5,7 +5,6 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SectionService} from '../services/section.service';
-import {EditTagComponent} from '../tag/edit-tag/edit-tag.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {EditFicheComponent} from './edit-fiche/edit-fiche.component';
 
@@ -70,13 +69,11 @@ export class BoardComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-
+    dialogConfig.width = '60%';
     dialogConfig.data = {
       id: 1,
       title: 'Angular For Beginners'
     };
-
-    this.dialog.open(EditFicheComponent, dialogConfig);
 
     const dialogRef = this.dialog.open(EditFicheComponent, dialogConfig);
 
@@ -84,6 +81,14 @@ export class BoardComponent implements OnInit {
       data => console.log("Dialog output:", data)
     );
   }
+
+  /*onCreate(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    this.dialog.open(EditFicheComponent);
+  }*/
 
   getFiches = (): void => {
     this.sectionService.getSections()

@@ -27,8 +27,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { EditTagComponent } from './tag/edit-tag/edit-tag.component';
-import { DialogComponent } from './dialog/dialog.component';
 import { EditFicheComponent } from './board/edit-fiche/edit-fiche.component';
 
 const appRoutes: Routes = [
@@ -50,8 +48,6 @@ const appRoutes: Routes = [
     UserComponent,
     FicheComponent,
     MComponent,
-    EditTagComponent,
-    DialogComponent,
     EditFicheComponent,
 
   ],
@@ -80,6 +76,6 @@ const appRoutes: Routes = [
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent]
+  entryComponents: [EditFicheComponent]
 })
 export class AppModule { }

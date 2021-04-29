@@ -34,4 +34,11 @@ export class EditFicheComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  initializeFormGroup(){
+    this.form.setValue({
+      $key: null,
+      email: ''
+    });
+  }
+
 }

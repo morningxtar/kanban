@@ -6,8 +6,6 @@ import {SectionModel} from '../models/section.model';
 import {Subscription} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {DialogComponent} from '../dialog/dialog.component';
-import {EditTagComponent} from './edit-tag/edit-tag.component';
 
 @Component({
   selector: 'app-tag',
@@ -109,7 +107,7 @@ export class TagComponent implements OnInit {
 
   };
 
-  openDialog(): void {
+ /* openDialog(): void {
     const dialogRef = this.dialog.open(EditTagComponent, {
       width: '250px',
       data: {name: this.name, animal: this.animal}
@@ -119,5 +117,5 @@ export class TagComponent implements OnInit {
       console.log('The dialog was closed ' + result);
       this.animal = result;
     });
-  }
+  }*/
 }

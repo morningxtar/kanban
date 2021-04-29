@@ -1,0 +1,18 @@
+
+.app-name{
+  font-size: 30px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+}
+.has-gradient-text{
+  background: -webkit-linear-gradient(#13f7f4, #2af598);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.board-bar{
+  background: rgba(red, 0.5);
+  padding: 8px 15px;
+}
+.spacer{
+  flex: 1 1 auto;
+}

@@ -1,27 +1,52 @@
-<div class="site-navbar">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="">KANBAN</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <ul class="nav navbar-nav">
-          <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="tags">Gestion des tags</a></li>
-          <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="users">Gestion des utilisateurs</a></li>
-          <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="fiches">Gestion des fiches</a></li>
-          <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="sections">Gestion des sections</a></li>
-<!--          <li *ngIf="status" routerLinkActive="active"><a class="btn btn-danger" (click)="onSignOut()">Déconnexion</a></li>-->
-        </ul>
-      </div>
-    </div>
-  </nav>
-</div>
-<div class="site-mobile-menu bg-secondary">
-  <div class="site-mobile-menu-header">
-    <div class="site-mobile-menu-close mt-3">
-      <span class="icon-close2 js-menu-toggle"></span>
+<div class="navbar has-background-dark">
+  <div class="navbar-brand">
+    <div class="navbar-item">
+      <h1 class="app-name has-gradient-text"> KANBAN</h1>
     </div>
   </div>
-  <div class="site-mobile-menu-body"></div>
-</div> <!-- .site-mobile-menu -->
+</div>
+  <!--<button mat-button [matMenuTriggerFor]="tags">Gestion des tags</button>-->
+  <mat-toolbar color="warn" class="mat-elevation-z8" >
+    <span><mat-icon>eco</mat-icon>LetsPlay</span>
+    <div class="spacer"></div>
+
+    <a mat-button class="nav-item nav-link" routerLink="tags">Gestion des tags</a>
+    <a  mat-button class="nav-item nav-link" routerLink="users">Gestion des utilisateurs</a>
+    <a mat-button class="nav-item nav-link" routerLink="fiches">Gestion des fiches</a>
+    <a mat-raised-button color="accent" class="nav-item nav-link" routerLink="sections">Gestion des sections</a>
+  </mat-toolbar>
+
+
+
+
+
+
+<!--
+<div class="site-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" routerLink="">KANBAN</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <ul class="nav navbar-nav">
+            <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="tags">Gestion des tags</a></li>
+            <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="users">Gestion des utilisateurs</a></li>
+            <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="fiches">Gestion des fiches</a></li>
+            <li routerLinkActive="active"><a class="nav-item nav-link" routerLink="sections">Gestion des sections</a></li>
+  &lt;!&ndash;          <li *ngIf="status" routerLinkActive="active"><a class="btn btn-danger" (click)="onSignOut()">Déconnexion</a></li>&ndash;&gt;
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="site-mobile-menu bg-secondary">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div> &lt;!&ndash; .site-mobile-menu &ndash;&gt;
+-->

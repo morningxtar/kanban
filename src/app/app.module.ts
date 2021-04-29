@@ -22,7 +22,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import {MatNativeDateModule, MatOptionModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
@@ -30,6 +30,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditTagComponent } from './tag/edit-tag/edit-tag.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { EditFicheComponent } from './board/edit-fiche/edit-fiche.component';
+import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
+import { AddTagComponent } from './tag/add-tag/add-tag.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'board', pathMatch: 'full'},
@@ -53,12 +55,14 @@ const appRoutes: Routes = [
     EditTagComponent,
     DialogComponent,
     EditFicheComponent,
+    AddTagComponent,
 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatSliderModule,
     RouterModule,
@@ -77,6 +81,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MatToolbarModule,
     MatListModule,
+    MatOptionModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent],

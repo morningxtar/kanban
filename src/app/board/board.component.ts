@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SectionService} from '../services/section.service';
+import {EditTagComponent} from '../tag/edit-tag/edit-tag.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {EditFicheComponent} from './edit-fiche/edit-fiche.component';
 

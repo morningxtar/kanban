@@ -124,7 +124,6 @@ export class TagComponent implements OnInit {
 
   openEditDialog(tag: TagModel) {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 

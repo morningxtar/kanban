@@ -1,5 +1,28 @@
-<h2 mat-dialog-title>{{description}}</h2>
+<h2 mat-dialog-title>tag</h2>
 
+
+<mat-dialog-content *ngIf="sections && tags" [formGroup]="form">
+
+  <mat-form-field>
+    <input matInput
+           placeholder="libelle"
+           formControlName="libelle">
+
+
+
+  <mat-form-field>
+    <input matInput
+           placeholder="date butoire"
+           formControlName="dateButoire">
+
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           placeholder="time"
+           formControlName="time">
+
+  </mat-form-field>
 <!--<mat-dialog-content [formGroup]="form">-->
 
   <mat-form-field>

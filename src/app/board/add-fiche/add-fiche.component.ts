@@ -1,28 +1,36 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {TagModel} from '../../models/tag.model';
 import {FicheModel} from '../../models/fiche.model';
 import {UserService} from '../../services/user.service';
 import {TagService} from '../../services/tag.service';
 import {SectionService} from '../../services/section.service';
-import {Subscription} from 'rxjs';
 
 @Component({
-  selector: 'app-edit-fiche',
-  templateUrl: './edit-fiche.component.html',
-  styleUrls: ['./edit-fiche.component.css']
+  selector: 'app-add-fiche',
+  templateUrl: './add-fiche.component.html',
+  styleUrls: ['./add-fiche.component.css']
 })
-export class EditFicheComponent implements OnInit {
+export class AddFicheComponent implements OnInit {
 
   form: FormGroup;
   sections;
   currentSection;
   tags;
   users;
+
+  libelle: string;
+  dateButoire: string;
+  time: number;
+  lieu: string;
+  section: any;
+  user: any;
+  note: string;
+  url: string;
+  tag: any;
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<EditFicheComponent>,
+    private dialogRef: MatDialogRef<AddFicheComponent>,
     @Inject(MAT_DIALOG_DATA) ficheModel: FicheModel,
     private userService: UserService,
     private tagService: TagService,
@@ -31,17 +39,17 @@ export class EditFicheComponent implements OnInit {
     this.getTags();
     this.getSections();
     this.getUsers();
-    this.currentSection = ficheModel['fiche'].Section;
+
     this.form = fb.group({
-      libelle: [ficheModel['fiche'].Libelle, Validators.required],
-      dateButoire: [ficheModel['fiche'].Datebutoire, Validators.required],
-      time: [ficheModel['fiche'].Time, Validators.required],
-      lieu: [ficheModel['fiche'].Lieu, Validators.required],
-      section: [ficheModel['fiche'].Section, Validators.required],
-      user: [ficheModel['fiche'].user, Validators.required],
-      note: [ficheModel['fiche'].note, Validators.required],
-      url: [ficheModel['fiche'].Url, Validators.required],
-      tags: [ficheModel['fiche'].tag, Validators.required],
+      Libelle: [this.libelle, Validators.required],
+      Datebutoire: [this.dateButoire, Validators.required],
+      Time: [this.time, Validators.required],
+      Lieu: [this.lieu, Validators.required],
+      Section: [this.section, Validators.required],
+      user: [this.user, Validators.required],
+      note: [this.note, Validators.required],
+      Url: [this.url, Validators.required],
+      tag: [this.tag, Validators.required],
     });
 
   }
@@ -58,15 +66,6 @@ export class EditFicheComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
-/*
-
-  initializeFormGroup(){
-    this.form.setValue({
-      $key: null,
-      email: ''
-    });
-  }
-*/
 
   getSections = (): void => {
     this.sectionService.getSections()
@@ -94,5 +93,4 @@ export class EditFicheComponent implements OnInit {
         console.log(error);
       });
   }
-
 }

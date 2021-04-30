@@ -1,33 +1,39 @@
-<!--<form (ngSubmit)="addTask()" [formGroup]="taskForm">-->
-<!--  <mat-form-field>-->
-<!--    <mat-label>Add new task</mat-label>-->
-<!--    <input [formControl]="task" matInput placeholder="Some task">-->
-<!--  </mat-form-field>-->
-<!--  <button type="submit" mat-raised-button color="accent">{{ 'add-task'}}</button>-->
-<!--</form>-->
+<button mat-icon-button>
+  <mat-icon (click)="openAddDialog()">add</mat-icon>
+</button>
 
 <div class="" style="display: inline-block" *ngFor="let section of Section">
   <div class="drag-container">
     <div class="section-heading">{{section.id}}</div>
 
     <div cdkDropList id="{{section.id}}" [cdkDropListData]="section.sectionlist"
-         [cdkDropListConnectedTo]="connectedTo" class="item-list" (cdkDropListDropped)="drop($event)">
+         [cdkDropListConnectedTo]="connectedTo" class="item-list" (cdkDropListDropped)="drop($event, section.sectionlist)">
       <mat-card class="mat-card-box" *ngFor="let sectionItem of section.sectionlist" cdkDrag>
-        <mat-card-title>{{sectionItem.Libelle}}
+        <mat-card-title>fiche: {{sectionItem.Libelle}}
 
         </mat-card-title>
         <mat-card-content>
-          <div> user: {{sectionItem.user.Nom}}</div>
-          <div> user: {{sectionItem.user.Profession}}</div>
-          <div> tag: {{sectionItem.tag.libelle}}</div>
-
+          <div> Libelle: {{sectionItem.Libelle}}</div>
+          <div> Date butoire: {{sectionItem.Datebutoire}}</div>
+          <div> Time: {{sectionItem.Time}}</div>
+          <div> Lieu: {{sectionItem.Lieu}}</div>
+          <div> Note: {{sectionItem.note}}</div>
+          <div> Url: {{sectionItem.Url}}</div>
+          <div> Section: {{sectionItem.Section.nomsection}}</div>
+          <div *ngIf="sectionItem.user !== null"> User: {{sectionItem.user.Nom}}</div>
+          <div>
+          <mat-list>
+            Tags
+            <mat-list-item *ngFor="let tag of sectionItem.tag">{{tag['libelle']}}</mat-list-item>
+          </mat-list>
+          </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-icon-button (click)="openDialog()">
+          <button mat-icon-button (click)="openEditDialog(sectionItem)">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button>
-            <mat-icon class="mat-24">delete</mat-icon>
+            <mat-icon class="mat-24" (click)="onDelete(sectionItem)">delete</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>

@@ -20,7 +20,7 @@
           <div> Note: {{sectionItem.note}}</div>
           <div> Url: {{sectionItem.Url}}</div>
           <div> Section: {{sectionItem.Section.nomsection}}</div>
-          <div> User: {{sectionItem.user.Nom}}</div>
+          <div *ngIf="sectionItem.user !== null"> User: {{sectionItem.user.Nom}}</div>
           <div>
           <mat-list>
             Tags

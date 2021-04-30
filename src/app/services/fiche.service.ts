@@ -19,11 +19,11 @@ export class FicheService {
   }
 
   saveFiche(data): Observable<FicheModel> {
-    return this.httpClient.post<FicheModel>(this.devHost + '/fiches', data);
+    return this.httpClient.post<FicheModel>(this.devHost + '/fiches', data, {responseType: 'text' as 'json'});
   }
 
   updateFiche(data): Observable<FicheModel> {
-    return this.httpClient.put<FicheModel>(this.devHost + '/fiches', data);
+    return this.httpClient.put<FicheModel>(this.devHost + '/fiches', data, {responseType: 'text' as 'json'});
   }
 
   deleteFiche(id): Observable<FicheModel> {

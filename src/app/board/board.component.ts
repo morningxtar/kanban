@@ -50,9 +50,8 @@ export class BoardComponent implements OnInit {
       this.sectionService.getSections().subscribe(value => {
         const index = this.Section.findIndex(fruit => fruit.id === event.container.id);
         fiche[event.currentIndex]['Section'] = value[index];
+        this.onEdit(fiche[event.currentIndex]);
       });
-      console.log(fiche[event.currentIndex]);
-      this.onEdit(fiche[event.currentIndex]);
     }
 
   };
@@ -64,7 +63,6 @@ export class BoardComponent implements OnInit {
   onAddFiche = (data: TagModel) => {
     this.ficheService.saveFiche(data)
       .subscribe(value => {
-          alert('fiche ajouté avec succès');
           this.router.navigateByUrl('/board').then(r => console.log(r));
         },
         error => {
@@ -120,6 +118,7 @@ export class BoardComponent implements OnInit {
           fiche.Url = val.url;
           fiche.user = val.user;
           fiche.tag = val.tags;
+          console.log(fiche);
           this.onEdit(fiche);
         }
       }
@@ -131,6 +130,7 @@ export class BoardComponent implements OnInit {
       .subscribe(value1 => {
         this.ficheService.getFiches()
           .subscribe(value => {
+            console.log(value);
             this.fiches = value;
             this.Section = [];
             this.connectedTo = [];
@@ -143,8 +143,10 @@ export class BoardComponent implements OnInit {
             }
 
             for (let i = 0; i < value.length; i++) {
-              const index = this.Section.findIndex(fruit => fruit.id === value[i]['Section'].nomsection);
-              this.Section[index].sectionlist.push(value[i]);
+              if (value[i].Section !== null) {
+                const index = this.Section.findIndex(fruit => fruit.id === value[i].Section.nomsection);
+                this.Section[index].sectionlist.push(value[i]);
+              }
             }
           }, error => {
             console.log(error);
@@ -157,8 +159,7 @@ export class BoardComponent implements OnInit {
   onDeleteFiche = (data: FicheModel) => {
     this.ficheService.deleteFiche(data.id)
       .subscribe(value => {
-          alert('fiche supprimé avec succès');
-          this.router.navigateByUrl('/tags').then(r => console.log(r));
+          this.router.navigateByUrl('/tags');
         },
         error => {
           console.log(error);
@@ -168,8 +169,8 @@ export class BoardComponent implements OnInit {
   onUpdateFiche = (data: FicheModel) => {
     this.ficheService.updateFiche(data)
       .subscribe(value => {
-          alert('fiche modifiée avec succès');
-          this.router.navigateByUrl('/board').then(r => console.log(r));
+          console.log(value);
+          this.router.navigateByUrl('/board');
         },
         error => {
           console.log(error);

@@ -155,7 +155,7 @@ export class BoardComponent implements OnInit {
   onDeleteFiche = (data: FicheModel) => {
     this.ficheService.deleteFiche(data.id)
       .subscribe(value => {
-          this.router.navigateByUrl('/tags');
+          this.router.navigateByUrl('/board');
         },
         error => {
           console.log(error);

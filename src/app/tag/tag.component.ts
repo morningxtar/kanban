@@ -6,12 +6,9 @@ import {SectionModel} from '../models/section.model';
 import {Subscription} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-<<<<<<< HEAD
-=======
-import {DialogComponent} from '../dialog/dialog.component';
-import {EditTagComponent} from './edit-tag/edit-tag.component';
+import { EditTagComponent } from './edit-tag/edit-tag.component';
 import {AddTagComponent} from './add-tag/add-tag.component';
->>>>>>> 54142e1959458c2b85e6f40ab35741ea689dfcb3
+
 
 @Component({
   selector: 'app-tag',
@@ -126,8 +123,6 @@ export class TagComponent implements OnInit {
     this.getTags();
   };
 
-<<<<<<< HEAD
-=======
   openEditDialog(tag: TagModel) {
     const dialogConfig = new MatDialogConfig();
 
@@ -170,5 +165,5 @@ export class TagComponent implements OnInit {
       }
     );
   }
->>>>>>> 54142e1959458c2b85e6f40ab35741ea689dfcb3
+
 }

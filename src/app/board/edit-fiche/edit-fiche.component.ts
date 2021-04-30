@@ -33,6 +33,7 @@ export class EditFicheComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
+/*
 
   initializeFormGroup(){
     this.form.setValue({
@@ -40,5 +41,6 @@ export class EditFicheComponent implements OnInit {
       email: ''
     });
   }
+*/
 
 }

@@ -22,14 +22,18 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule, MatOptionModule} from '@angular/material/core';
+import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EditFicheComponent } from './board/edit-fiche/edit-fiche.component';
-import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
-import { AddTagComponent } from './tag/add-tag/add-tag.component';
+import {EditTagComponent} from './tag/edit-tag/edit-tag.component';
+import {AddTagComponent} from './tag/add-tag/add-tag.component';
+import {AddSectionComponent} from './section/add-section/add-section.component';
+import { EditSectionComponent } from './section/edit-section/edit-section.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'board', pathMatch: 'full'},
@@ -51,14 +55,17 @@ const appRoutes: Routes = [
     FicheComponent,
     MComponent,
     EditFicheComponent,
+    EditTagComponent,
     AddTagComponent,
-
+    AddSectionComponent,
+    EditSectionComponent,
+    AddUserComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule,
     MatCardModule,
     MatSliderModule,
     RouterModule,
@@ -77,8 +84,6 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MatToolbarModule,
     MatListModule,
-    MatOptionModule,
-    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent],

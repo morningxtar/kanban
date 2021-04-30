@@ -1,1 +1,15 @@
-<p>user works!</p>
+<button mat-icon-button>
+  <mat-icon (click)="openAddDialog()">add</mat-icon>
+</button>
+<mat-list *ngIf="users">
+  <mat-list-item class="list-item" *ngFor="let user of users">
+    <p mat-line>{{user.nom}}</p>
+    <button mat-icon-button>
+
+      <mat-icon (click)="openEditDialog(user)">edit</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon (click)="onDelete(user)">delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>

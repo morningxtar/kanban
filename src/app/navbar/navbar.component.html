@@ -1,12 +1,12 @@
 <div class="navbar has-background-dark">
   <div class="navbar-brand">
     <div class="navbar-item">
-      <h1 class="app-name has-gradient-text"> KANBAN</h1>
+      <h1 class="app-name has-gradient-text" [routerLink]="['/board']"> KANBAN</h1>
     </div>
   </div>
 </div>
   <!--<button mat-button [matMenuTriggerFor]="tags">Gestion des tags</button>-->
-  <mat-toolbar color="warn" class="mat-elevation-z8" >
+  <mat-toolbar  color="warn" class="mat-elevation-z8" >
     <span><mat-icon>eco</mat-icon>LetsPlay</span>
     <div class="spacer"></div>
 
@@ -15,11 +15,6 @@
     <a mat-button class="nav-item nav-link" routerLink="fiches">Gestion des fiches</a>
     <a mat-raised-button color="accent" class="nav-item nav-link" routerLink="sections">Gestion des sections</a>
 
-    <div flexLayout="row">
-      <button [routerLink]="['/home']" routerLinkActive="active">B2-L1</button>
-      <button [routerLink]="['/page2']" routerLinkActive="active">B2-L3</button>
-      <button [routerLink]="['/page3']" routerLinkActive="active">B2-L3</button>
-    </div>
   </mat-toolbar>
 
 

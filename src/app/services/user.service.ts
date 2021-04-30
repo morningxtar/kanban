@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {TagModel} from '../models/tag.model';
 import {UserModel} from '../models/user.model';
 import {FicheModel} from '../models/fiche.model';
+import {SectionModel} from '../models/section.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class UserService {
     return this.httpClient.put<UserModel>(this.devHost + '/users', data);
   }
 
-  deleteTag(url): Observable<UserModel> {
-    return this.httpClient.delete<UserModel>(url);
+  deleteUser(id): Observable<UserModel> {
+    return this.httpClient.delete<UserModel>(this.devHost + '/users/' + id);
   }
 }

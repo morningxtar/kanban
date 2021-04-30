@@ -30,5 +30,4 @@ export class AddUserComponent implements OnInit {
   close() {
     this.dialogRef.close();
   }
-
 }

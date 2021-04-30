@@ -98,6 +98,7 @@ export class UserComponent implements OnInit {
         });
   }
 
+
   onAdd = (data: UserModel) => {
     this.onAddUser(data);
     this.getUsers();

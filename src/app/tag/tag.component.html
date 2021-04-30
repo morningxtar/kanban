@@ -1,6 +1,7 @@
 <button mat-icon-button>
   <mat-icon (click)="openAddDialog()">add</mat-icon>
 </button>
+
 <mat-list *ngIf="tags">
   <mat-list-item class="list-item" *ngFor="let tag of tags">
     <p mat-line>{{tag.libelle}}</p>

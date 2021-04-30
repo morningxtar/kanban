@@ -164,7 +164,6 @@ export class SectionComponent implements OnInit {
     const dialogRef = this.dialog.open(AddSectionComponent,
       dialogConfig);
 
-
     dialogRef.afterClosed().subscribe(
       val => {
         console.log('Dialog output:', val);

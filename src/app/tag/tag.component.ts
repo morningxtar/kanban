@@ -95,8 +95,7 @@ export class TagComponent implements OnInit {
         error => {
           console.log(error);
         });
-  };
-
+  }
   onDeleteTag = (data: TagModel) => {
     console.log(data);
     this.tagService.deleteTag(data.id)

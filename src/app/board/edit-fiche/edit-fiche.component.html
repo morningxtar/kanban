@@ -47,9 +47,8 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Section</mat-label>
-    <mat-select placeholder="Section" formControlName="section" [(value)]="currentSection.nomsection" required>
-      <mat-option>---</mat-option>
-      <mat-option  *ngFor="let section of sections" [value]="section" >
+    <mat-select placeholder="Section" formControlName="section" required>
+      <mat-option  *ngFor="let section of sections" [value]="section">
         {{section.nomsection}}
       </mat-option>
     </mat-select>
@@ -71,7 +70,6 @@
   <mat-form-field appearance="fill">
     <mat-label>User</mat-label>
     <mat-select placeholder="user" formControlName="user" required>
-      <mat-option>---</mat-option>
       <mat-option  *ngFor="let user of users" [value]="user" >
         {{user.Nom}}
       </mat-option>

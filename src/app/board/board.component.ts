@@ -165,7 +165,6 @@ export class BoardComponent implements OnInit {
   onUpdateFiche = (data: FicheModel) => {
     this.ficheService.updateFiche(data)
       .subscribe(value => {
-          console.log(value);
           this.router.navigateByUrl('/board');
         },
         error => {
@@ -180,5 +179,6 @@ export class BoardComponent implements OnInit {
 
   onEdit = (data: FicheModel) => {
     this.onUpdateFiche(data);
+    this.getFiches();
   };
 }

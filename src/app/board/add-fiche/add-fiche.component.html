@@ -5,7 +5,7 @@
   <mat-form-field>
     <input matInput
            placeholder="libelle"
-           formControlName="Libelle">
+           formControlName="Libelle" required>
 
   </mat-form-field>
 
@@ -58,7 +58,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Tag</mat-label>
-    <mat-select multiple placeholder="tag" formControlName="tag" required>
+    <mat-select multiple placeholder="tag" formControlName="tag">
       <mat-option  *ngFor="let tag of tags" [value]="tag" >
         {{tag.libelle}}
       </mat-option>

@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {SectionModel} from '../../models/section.model';
 import {UserModel} from '../../models/user.model';
 
 @Component({
@@ -17,20 +16,25 @@ export class EditUserComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<EditUserComponent>,
               @Inject(MAT_DIALOG_DATA) userModel: UserModel) {
-    console.log(userModel['user']);
     this.form = fb.group({
-      nom: [userModel['user'].user, Validators.required],
+      Nom: [userModel['user'].Nom, Validators.required],
+      Profession: [userModel['user'].Profession],
+      Email: [userModel['user'].Email],
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit = () => {
+
   }
 
-  save() {
-    this.dialogRef.close(this.form.value);
+
+  save = () => {
+    if (this.form.valid) {
+      this.dialogRef.close(this.form.value);
+    }
   }
 
-  close() {
+  close = () => {
     this.dialogRef.close();
   }
 }

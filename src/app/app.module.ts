@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 
@@ -14,8 +15,6 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {HttpClientModule} from '@angular/common/http';
 import {SectionComponent} from './section/section.component';
 import {UserComponent} from './user/user.component';
-import {FicheComponent} from './fiche/fiche.component';
-import {MComponent} from './m/m.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
@@ -27,11 +26,16 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { EditTagComponent } from './tag/edit-tag/edit-tag.component';
-import { DialogComponent } from './dialog/dialog.component';
-import { EditFicheComponent } from './board/edit-fiche/edit-fiche.component';
-import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
-import { AddTagComponent } from './tag/add-tag/add-tag.component';
+import {EditTagComponent} from './tag/edit-tag/edit-tag.component';
+import {EditFicheComponent} from './board/edit-fiche/edit-fiche.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {AddTagComponent} from './tag/add-tag/add-tag.component';
+import {AddFicheComponent} from './board/add-fiche/add-fiche.component';
+import {MatSelectModule} from '@angular/material/select';
+import {AddSectionComponent} from './section/add-section/add-section.component';
+import {EditSectionComponent} from './section/edit-section/edit-section.component';
+import {AddUserComponent} from './user/add-user/add-user.component';
+import {EditUserComponent} from './user/edit-user/edit-user.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'board', pathMatch: 'full'},
@@ -39,7 +43,6 @@ const appRoutes: Routes = [
   {path: 'tags', component: TagComponent},
   {path: 'sections', component: SectionComponent},
   {path: 'users', component: UserComponent},
-  {path: 'fiches', component: FicheComponent},
 ];
 
 @NgModule({
@@ -50,12 +53,14 @@ const appRoutes: Routes = [
     NavbarComponent,
     SectionComponent,
     UserComponent,
-    FicheComponent,
-    MComponent,
     EditTagComponent,
-    DialogComponent,
     EditFicheComponent,
     AddTagComponent,
+    AddFicheComponent,
+    AddSectionComponent,
+    EditSectionComponent,
+    AddUserComponent,
+    EditUserComponent,
 
   ],
   imports: [
@@ -82,10 +87,12 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatListModule,
     MatOptionModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogComponent]
+  entryComponents: []
 })
-export class AppModule { }
+export class AppModule {
+}

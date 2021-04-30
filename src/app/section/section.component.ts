@@ -1,14 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {TagModel} from '../models/tag.model';
 import {SectionService} from '../services/section.service';
 import {SectionModel} from '../models/section.model';
-import {Observable, Subscription} from 'rxjs';
-import {TagService} from '../services/tag.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {EditTagComponent} from '../tag/edit-tag/edit-tag.component';
-import {AddTagComponent} from '../tag/add-tag/add-tag.component';
 import {AddSectionComponent} from './add-section/add-section.component';
 import {EditSectionComponent} from './edit-section/edit-section.component';
 
@@ -23,13 +18,6 @@ export class SectionComponent implements OnInit {
               private formBuilder: FormBuilder, public dialog: MatDialog) {
   }
 
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.registerForm.controls;
-  }
-
-  registerForm: FormGroup;
-  submitted = false;
   sections;
   section: string;
 
@@ -42,51 +30,21 @@ export class SectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSections();
-
-    this.registerForm = this.formBuilder.group({
-      section: ['', Validators.required],
-    });
-
-
-    // const section = new SectionModel();
-    // section.setNomsection = 're';
-    // this.onAddSection(section);
-    // console.log(section);
   }
-
-  onReset = () => {
-    this.submitted = false;
-    this.registerForm.reset();
-  };
 
   getSections = () => {
     this.sectionService.getSections()
       .subscribe(value => {
-        console.log(value);
         this.sections = value;
       }, error => {
         console.log(error);
       });
   };
 
-
- /* getSections = (): Subscription => {
-    return this.sectionService.getSections()
-      .subscribe(value => {
-        console.log(value);
-        return value;
-      }, error => {
-        console.log(error);
-      });
-  }*/
-
-
   onAddSection = (data: SectionModel) => {
-    console.log(data);
     this.sectionService.saveSection(data)
       .subscribe(value => {
-          alert('Utilisateur ajouté avec succès');
-          this.router.navigateByUrl('/sections').then(r => console.log(r));
+          this.router.navigateByUrl('/sections');
         },
         error => {
           console.log(error);
@@ -94,11 +52,9 @@ export class SectionComponent implements OnInit {
   }
 
   onUpdateSection = (data: SectionModel) => {
-    console.log(data);
     this.sectionService.updateSection(data)
       .subscribe(value => {
-          alert('section ajouté avec succès');
-          this.router.navigateByUrl('/sections').then(r => console.log(r));
+          this.router.navigateByUrl('/sections');
         },
         error => {
           console.log(error);
@@ -106,11 +62,9 @@ export class SectionComponent implements OnInit {
   };
 
   onDeleteSection = (data: SectionModel) => {
-    console.log(data);
     this.sectionService.deleteSection(data.id)
       .subscribe(value => {
-          alert('section supprimé avec succès');
-          this.router.navigateByUrl('/sections').then(r => console.log(r));
+          this.router.navigateByUrl('/sections');
         },
         error => {
           console.log(error);
@@ -131,7 +85,7 @@ export class SectionComponent implements OnInit {
     this.getSections();
   };
 
-  openEditDialog(section: SectionModel) {
+  openEditDialog = (section: SectionModel) => {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -154,7 +108,7 @@ export class SectionComponent implements OnInit {
     );
   }
 
-  openAddDialog() {
+  openAddDialog = () => {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;

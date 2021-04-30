@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {FicheModel} from '../models/fiche.model';
-import {TagModel} from '../models/tag.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +26,6 @@ export class FicheService {
   }
 
   deleteFiche(id): Observable<FicheModel> {
-    return this.httpClient.delete<FicheModel>(this.devHost + '/fiches/' + id);
+    return this.httpClient.delete<FicheModel>(this.devHost + '/fiches/' + id, {responseType: 'text' as 'json'});
   }
 }

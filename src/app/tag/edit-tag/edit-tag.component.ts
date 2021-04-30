@@ -11,32 +11,32 @@ import {TagModel} from '../../models/tag.model';
 export class EditTagComponent implements OnInit {
 
   form: FormGroup;
-  libelle: string;
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditTagComponent>,
-    @Inject(MAT_DIALOG_DATA) tagModel: TagModel ) {
+    @Inject(MAT_DIALOG_DATA) tagModel: TagModel) {
 
-    console.log(tagModel['tag']);
     this.form = fb.group({
       libelle: [tagModel['tag'].libelle, Validators.required],
     });
 
   }
 
-  ngOnInit() {
+  ngOnInit = () => {
 
-  }
+  };
 
 
-  save() {
-    this.dialogRef.close(this.form.value);
-  }
+  save = () => {
+    if (this.form.valid) {
+      this.dialogRef.close(this.form.value);
+    }
+  };
 
-  close() {
+  close = () => {
     this.dialogRef.close();
-  }
+  };
 
 }
 

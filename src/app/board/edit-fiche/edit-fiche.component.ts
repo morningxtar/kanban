@@ -1,12 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {TagModel} from '../../models/tag.model';
 import {FicheModel} from '../../models/fiche.model';
 import {UserService} from '../../services/user.service';
 import {TagService} from '../../services/tag.service';
 import {SectionService} from '../../services/section.service';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-edit-fiche',
@@ -34,39 +32,32 @@ export class EditFicheComponent implements OnInit {
     this.currentSection = ficheModel['fiche'].Section;
     this.form = fb.group({
       libelle: [ficheModel['fiche'].Libelle, Validators.required],
-      dateButoire: [ficheModel['fiche'].Datebutoire, Validators.required],
-      time: [ficheModel['fiche'].Time, Validators.required],
-      lieu: [ficheModel['fiche'].Lieu, Validators.required],
+      dateButoire: [ficheModel['fiche'].Datebutoire],
+      time: [ficheModel['fiche'].Time],
+      lieu: [ficheModel['fiche'].Lieu],
       section: [ficheModel['fiche'].Section, Validators.required],
       user: [ficheModel['fiche'].user, Validators.required],
-      note: [ficheModel['fiche'].note, Validators.required],
-      url: [ficheModel['fiche'].Url, Validators.required],
-      tags: [ficheModel['fiche'].tag, Validators.required],
+      note: [ficheModel['fiche'].note],
+      url: [ficheModel['fiche'].Url],
+      tags: [ficheModel['fiche'].tag],
     });
 
   }
 
-  ngOnInit() {
+  ngOnInit = () => {
 
   }
 
 
-  save() {
-    this.dialogRef.close(this.form.value);
+  save = () => {
+    if (this.form.valid) {
+      this.dialogRef.close(this.form.value);
+    }
   }
 
-  close() {
+  close = () => {
     this.dialogRef.close();
   }
-/*
-
-  initializeFormGroup(){
-    this.form.setValue({
-      $key: null,
-      email: ''
-    });
-  }
-*/
 
   getSections = (): void => {
     this.sectionService.getSections()

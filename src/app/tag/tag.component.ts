@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {TagService} from '../services/tag.service';
 import {TagModel} from '../models/tag.model';
-import {SectionModel} from '../models/section.model';
-import {Subscription} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { EditTagComponent } from './edit-tag/edit-tag.component';
@@ -21,47 +19,12 @@ export class TagComponent implements OnInit {
               private formBuilder: FormBuilder, public dialog: MatDialog) {
   }
 
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.registerForm.controls;
-  }
 
-  registerForm: FormGroup;
-  submitted = false;
   tags;
-  libelle: string;
-  name: string;
-
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(EditTagComponent, {
-  //     width: '250px',
-  //     data: {name: this.name, animal: this.animal}
-  //   });
-  //
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed ' + result);
-  //     this.animal = result;
-  //   });
-  // }
-
-  course = {
-    description: '',
-    longDescription: '',
-    category: '',
-  };
 
   ngOnInit(): void {
     this.getTags();
-
-    this.registerForm = this.formBuilder.group({
-      libelle: ['', Validators.required],
-    });
   }
-
-  onReset = () => {
-    this.submitted = false;
-    this.registerForm.reset();
-  };
 
   getTags = () => {
     this.tagService.getTags()
@@ -77,8 +40,7 @@ export class TagComponent implements OnInit {
     console.log(data);
     this.tagService.saveTag(data)
       .subscribe(value => {
-          alert('tag ajouté avec succès');
-          this.router.navigateByUrl('/tags').then(r => console.log(r));
+          this.router.navigateByUrl('/tags');
         },
         error => {
           console.log(error);
@@ -89,8 +51,7 @@ export class TagComponent implements OnInit {
     console.log(data);
     this.tagService.updateTag(data)
       .subscribe(value => {
-          alert('tag ajouté avec succès');
-          this.router.navigateByUrl('/tags').then(r => console.log(r));
+          this.router.navigateByUrl('/tags');
         },
         error => {
           console.log(error);
@@ -100,8 +61,7 @@ export class TagComponent implements OnInit {
     console.log(data);
     this.tagService.deleteTag(data.id)
       .subscribe(value => {
-          alert('tag supprimé avec succès');
-          this.router.navigateByUrl('/tags').then(r => console.log(r));
+          this.router.navigateByUrl('/tags');
         },
         error => {
           console.log(error);
@@ -122,7 +82,7 @@ export class TagComponent implements OnInit {
     this.getTags();
   };
 
-  openEditDialog(tag: TagModel) {
+  openEditDialog = (tag: TagModel) => {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -138,13 +98,15 @@ export class TagComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       val => {
         console.log('Dialog output:', val);
-        tag.libelle = val.libelle;
-        this.onEdit(tag);
+        if (val !== undefined) {
+          tag.libelle = val.libelle;
+          this.onEdit(tag);
+        }
       }
     );
   }
 
-  openAddDialog() {
+  openAddDialog = () => {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
@@ -159,7 +121,9 @@ export class TagComponent implements OnInit {
       val => {
         console.log('Dialog output:', val);
 
-        this.onAddTag(val);
+        if (val !== undefined) {
+          this.onAddTag(val);
+        }
       }
     );
   }

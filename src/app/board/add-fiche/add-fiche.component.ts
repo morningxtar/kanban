@@ -42,28 +42,30 @@ export class AddFicheComponent implements OnInit {
 
     this.form = fb.group({
       Libelle: [this.libelle, Validators.required],
-      Datebutoire: [this.dateButoire, Validators.required],
-      Time: [this.time, Validators.required],
-      Lieu: [this.lieu, Validators.required],
+      Datebutoire: [this.dateButoire],
+      Time: [this.time],
+      Lieu: [this.lieu],
       Section: [this.section, Validators.required],
       user: [this.user, Validators.required],
-      note: [this.note, Validators.required],
-      Url: [this.url, Validators.required],
-      tag: [this.tag, Validators.required],
+      note: [this.note],
+      Url: [this.url],
+      tag: [this.tag],
     });
 
   }
 
-  ngOnInit() {
+  ngOnInit = () => {
 
   }
 
 
-  save() {
-    this.dialogRef.close(this.form.value);
+  save = () => {
+    if (this.form.valid) {
+      this.dialogRef.close(this.form.value);
+    }
   }
 
-  close() {
+  close = () => {
     this.dialogRef.close();
   }
 

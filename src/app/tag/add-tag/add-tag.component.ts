@@ -24,16 +24,18 @@ export class AddTagComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit = () => {
 
   }
 
 
-  save() {
-    this.dialogRef.close(this.form.value);
+  save = () => {
+    if (this.form.valid) {
+      this.dialogRef.close(this.form.value);
+    }
   }
 
-  close() {
+  close = () => {
     this.dialogRef.close();
   }
 }

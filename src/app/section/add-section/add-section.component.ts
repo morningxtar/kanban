@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {TagModel} from '../../models/tag.model';
 import {SectionModel} from '../../models/section.model';
 
 @Component({
@@ -23,14 +22,18 @@ export class AddSectionComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit = () => {
+
   }
 
-  save() {
-    this.dialogRef.close(this.form.value);
+
+  save = () => {
+    if (this.form.valid) {
+      this.dialogRef.close(this.form.value);
+    }
   }
 
-  close() {
+  close = () => {
     this.dialogRef.close();
   }
 

@@ -18,11 +18,11 @@ export class TagService {
   }
 
   saveTag(data): Observable<TagModel> {
-    return this.httpClient.post<TagModel>(this.devHost + '/tags', data);
+    return this.httpClient.post<TagModel>(this.devHost + '/tags', data, {responseType: 'text' as 'json'});
   }
 
   updateTag(data): Observable<TagModel> {
-    return this.httpClient.put<TagModel>(this.devHost + '/tags', data);
+    return this.httpClient.put<TagModel>(this.devHost + '/tags', data, {responseType: 'text' as 'json'});
   }
 
   deleteTag(id): Observable<TagModel> {

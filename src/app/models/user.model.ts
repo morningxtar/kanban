@@ -2,10 +2,8 @@ import {FicheModel} from './fiche.model';
 
 export class UserModel {
   id: any;
-  nom: string;
-  profession: string;
- email: string;
- fiche: Array<FicheModel>;
-
-
+  Nom: string;
+  Profession: string;
+  Email: string;
+  fiche: Array<FicheModel>;
 }

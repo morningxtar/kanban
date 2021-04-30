@@ -3,7 +3,9 @@
 </button>
 <mat-list *ngIf="users">
   <mat-list-item class="list-item" *ngFor="let user of users">
-    <p mat-line>{{user.nom}}</p>
+    <p mat-line>Nom: {{user.Nom}}</p>
+    <p mat-line>Profession: {{user.Profession}}</p>
+    <p mat-line>Email: {{user.Email}}</p>
     <button mat-icon-button>
 
       <mat-icon (click)="openEditDialog(user)">edit</mat-icon>

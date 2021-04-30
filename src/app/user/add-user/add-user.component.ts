@@ -11,23 +11,31 @@ import {UserModel} from '../../models/user.model';
 export class AddUserComponent implements OnInit {
   form: FormGroup;
   nom: string;
+  profession: string;
+  email: string;
 
   constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<AddUserComponent>,
               @Inject(MAT_DIALOG_DATA)userModel: UserModel ) {
     this.form = fb.group({
-      nom: [this.nom, Validators.required],
+      Nom: [this.nom, Validators.required],
+      Profession: [this.profession],
+      Email: [this.email],
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit = () => {
+
   }
 
-  save() {
-    this.dialogRef.close(this.form.value);
+
+  save = () => {
+    if (this.form.valid) {
+      this.dialogRef.close(this.form.value);
+    }
   }
 
-  close() {
+  close = () => {
     this.dialogRef.close();
   }
 }

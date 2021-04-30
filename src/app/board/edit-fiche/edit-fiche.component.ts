@@ -1,6 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {TagModel} from '../../models/tag.model';
+import {FicheModel} from '../../models/fiche.model';
+import {UserService} from '../../services/user.service';
+import {TagService} from '../../services/tag.service';
+import {SectionService} from '../../services/section.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-edit-fiche',
@@ -10,21 +16,40 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 export class EditFicheComponent implements OnInit {
 
   form: FormGroup;
-  description:string;
-
+  sections;
+  currentSection;
+  tags;
+  users;
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditFicheComponent>,
-    @Inject(MAT_DIALOG_DATA) data) {
+    @Inject(MAT_DIALOG_DATA) ficheModel: FicheModel,
+    private userService: UserService,
+    private tagService: TagService,
+    private sectionService: SectionService) {
 
-    this.description = data.description;
+    this.getTags();
+    this.getSections();
+    this.getUsers();
+    this.currentSection = ficheModel['fiche'].Section;
+    this.form = fb.group({
+      libelle: [ficheModel['fiche'].Libelle, Validators.required],
+      dateButoire: [ficheModel['fiche'].Datebutoire, Validators.required],
+      time: [ficheModel['fiche'].Time, Validators.required],
+      lieu: [ficheModel['fiche'].Lieu, Validators.required],
+      section: [ficheModel['fiche'].Section, Validators.required],
+      user: [ficheModel['fiche'].user, Validators.required],
+      note: [ficheModel['fiche'].note, Validators.required],
+      url: [ficheModel['fiche'].Url, Validators.required],
+      tags: [ficheModel['fiche'].tag, Validators.required],
+    });
+
   }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      description: [this.description, []],
-    });
+
   }
+
 
   save() {
     this.dialogRef.close(this.form.value);
@@ -32,6 +57,33 @@ export class EditFicheComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  getSections = (): void => {
+    this.sectionService.getSections()
+      .subscribe(value => {
+        this.sections = value;
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  getTags = () => {
+    this.tagService.getTags()
+      .subscribe(value => {
+        this.tags = value;
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  getUsers = (): void => {
+    this.userService.getUsers()
+      .subscribe(value => {
+        this.users = value;
+      }, error => {
+        console.log(error);
+      });
   }
 
 }

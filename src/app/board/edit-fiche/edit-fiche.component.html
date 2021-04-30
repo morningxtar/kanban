@@ -1,16 +1,97 @@
-<h2 mat-dialog-title>{{description}}</h2>
+<h2 mat-dialog-title>tag</h2>
 
-<mat-dialog-content [formGroup]="form">
+
+<mat-dialog-content *ngIf="sections && tags" [formGroup]="form">
 
   <mat-form-field>
     <input matInput
-           placeholder="Course Description"
-           formControlName="">
+           placeholder="libelle"
+           formControlName="libelle">
+
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           placeholder="date butoire"
+           formControlName="dateButoire">
+
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           placeholder="time"
+           formControlName="time">
+
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           placeholder="lieu"
+           formControlName="lieu">
+
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           placeholder="note"
+           formControlName="note">
+
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           placeholder="url"
+           formControlName="url">
+
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Section</mat-label>
+    <mat-select placeholder="Section" formControlName="section" [(value)]="currentSection.nomsection" required>
+      <mat-option>---</mat-option>
+      <mat-option  *ngFor="let section of sections" [value]="section" >
+        {{section.nomsection}}
+      </mat-option>
+    </mat-select>
+<!--    <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>-->
+<!--    <mat-hint>{{animalControl.value?.sound}}</mat-hint>-->
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tag</mat-label>
+    <mat-select multiple placeholder="tag" formControlName="tags" required>
+      <mat-option  *ngFor="let tag of tags" [value]="tag" >
+        {{tag.libelle}}
+      </mat-option>
+    </mat-select>
+    <!--    <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>-->
+    <!--    <mat-hint>{{animalControl.value?.sound}}</mat-hint>-->
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>User</mat-label>
+    <mat-select placeholder="user" formControlName="user" required>
+      <mat-option>---</mat-option>
+      <mat-option  *ngFor="let user of users" [value]="user" >
+        {{user.Nom}}
+      </mat-option>
+    </mat-select>
+    <!--    <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>-->
+    <!--    <mat-hint>{{animalControl.value?.sound}}</mat-hint>-->
   </mat-form-field>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button" (click)="close()">Close</button>
-  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+
+  <button class="mat-raised-button"
+          (click)="close()">
+    Close
+  </button>
+
+  <button class="mat-raised-button mat-primary"
+          (click)="save()">
+    Save
+  </button>
+
 </mat-dialog-actions>

@@ -19,6 +19,12 @@ export class SectionService {
     return this.httpClient.get<Array<SectionModel>>(this.devHost + '/sections');
   }
 
+  // get section by id
+  getSectionsById(id): Observable<Array<SectionModel>> {
+    console.log(this.devHost + '/sections/' + id);
+    return this.httpClient.get<Array<SectionModel>>(this.devHost + '/sections/' + id);
+  }
+
   saveSection(data): Observable<SectionModel> {
     return this.httpClient.post<SectionModel>(this.devHost + '/sections', data);
   }

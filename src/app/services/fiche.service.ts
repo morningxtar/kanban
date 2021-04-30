@@ -21,4 +21,12 @@ export class FicheService {
   saveFiche(data): Observable<FicheModel> {
     return this.httpClient.post<FicheModel>(this.devHost + '/fiches', data);
   }
+
+  updateFiche(data): Observable<FicheModel> {
+    return this.httpClient.put<FicheModel>(this.devHost + '/fiches', data);
+  }
+
+  deleteFiche(id): Observable<FicheModel> {
+    return this.httpClient.delete<FicheModel>(this.devHost + '/fiches/' + id);
+  }
 }

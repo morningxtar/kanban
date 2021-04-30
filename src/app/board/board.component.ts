@@ -8,6 +8,10 @@ import {SectionService} from '../services/section.service';
 import {EditTagComponent} from '../tag/edit-tag/edit-tag.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {EditFicheComponent} from './edit-fiche/edit-fiche.component';
+import {TagModel} from '../models/tag.model';
+import {FicheModel} from '../models/fiche.model';
+import {AddTagComponent} from '../tag/add-tag/add-tag.component';
+import {AddFicheComponent} from './add-fiche/add-fiche.component';
 
 @Component({
   selector: 'app-board',
@@ -27,63 +31,100 @@ export class BoardComponent implements OnInit {
     'd-title-done': []
   };
 
-  animal: string;
-  name: string;
-
-  constructor(private ficheService: FicheService, private sectionService: SectionService, private router: Router, private formBuilder: FormBuilder,
-              private snackbar: MatSnackBar, public dialog: MatDialog) {
-    this.buildForm();
-    // this.dir = this.translocoService.getActiveLang() === 'he' ? 'rtl' : 'ltr';
-
+  constructor(private ficheService: FicheService, private sectionService: SectionService,
+              private router: Router,
+              public dialog: MatDialog) {
   }
 
-  taskForm: FormGroup;
 
+  drop = (event: CdkDragDrop<string[]>, fiche: FicheModel) => {
 
-  buildForm = () => {
-    this.taskForm = this.formBuilder.group({
-      task: [null, [Validators.required, Validators.maxLength(80)]]
-    });
-  };
-
-
-  drop = (event: CdkDragDrop<string[]>) => {
-    console.log(event);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      console.log(event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex);
 
+      this.sectionService.getSections().subscribe(value => {
+        const index = this.Section.findIndex(fruit => fruit.id === event.container.id);
+        fiche[event.currentIndex]['Section'] = value[index];
+      });
+      console.log(fiche[event.currentIndex]);
+      this.onEdit(fiche[event.currentIndex]);
     }
+
   };
 
   ngOnInit(): void {
     this.getFiches();
   }
 
-  openDialog() {
+  onAddFiche = (data: TagModel) => {
+    this.ficheService.saveFiche(data)
+      .subscribe(value => {
+          alert('fiche ajouté avec succès');
+          this.router.navigateByUrl('/board').then(r => console.log(r));
+        },
+        error => {
+          console.log(error);
+        });
+  };
+
+  openAddDialog = () => {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
-    dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
-    };
 
-    this.dialog.open(EditFicheComponent, dialogConfig);
+    const dialogRef = this.dialog.open(AddFicheComponent,
+      dialogConfig);
 
-    const dialogRef = this.dialog.open(EditFicheComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      data => console.log("Dialog output:", data)
+      val => {
+        console.log('Dialog output:', val);
+
+        if (val !== undefined) {
+          this.onAddFiche(val);
+        }
+      }
     );
-  }
+  };
+
+  openEditDialog = (fiche: FicheModel) => {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      fiche
+    };
+
+    const dialogRef = this.dialog.open(EditFicheComponent,
+      dialogConfig);
+
+
+    dialogRef.afterClosed().subscribe(
+      val => {
+        console.log('Dialog output:', val);
+        if (val !== undefined) {
+          fiche.Libelle = val.libelle;
+          fiche.Datebutoire = val.dateButoire;
+          fiche.Time = val.time;
+          fiche.Lieu = val.lieu;
+          fiche.Section = val.section;
+          fiche.note = val.note;
+          fiche.Url = val.url;
+          fiche.user = val.user;
+          fiche.tag = val.tags;
+          this.onEdit(fiche);
+        }
+      }
+    );
+  };
 
   getFiches = (): void => {
     this.sectionService.getSections()
@@ -105,7 +146,6 @@ export class BoardComponent implements OnInit {
               const index = this.Section.findIndex(fruit => fruit.id === value[i]['Section'].nomsection);
               this.Section[index].sectionlist.push(value[i]);
             }
-            console.log(this.Section[0].sectionlist);
           }, error => {
             console.log(error);
           });
@@ -114,4 +154,34 @@ export class BoardComponent implements OnInit {
       });
   };
 
+  onDeleteFiche = (data: FicheModel) => {
+    this.ficheService.deleteFiche(data.id)
+      .subscribe(value => {
+          alert('fiche supprimé avec succès');
+          this.router.navigateByUrl('/tags').then(r => console.log(r));
+        },
+        error => {
+          console.log(error);
+        });
+  };
+
+  onUpdateFiche = (data: FicheModel) => {
+    this.ficheService.updateFiche(data)
+      .subscribe(value => {
+          alert('fiche modifiée avec succès');
+          this.router.navigateByUrl('/board').then(r => console.log(r));
+        },
+        error => {
+          console.log(error);
+        });
+  };
+
+  onDelete = (data: FicheModel) => {
+    this.onDeleteFiche(data);
+    this.getFiches();
+  };
+
+  onEdit = (data: FicheModel) => {
+    this.onUpdateFiche(data);
+  };
 }

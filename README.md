@@ -36,7 +36,7 @@ We have the possibility to:
 PS: For the tabs in the navbar, you also have the possibility to edit, delete and create.
 
 
-![Quick illustration of the project](Images/Sirfiche.PNG)
+![Quick illustration of the project](Images/Sirfiche1.PNG)
 
 
 ## areas for improvement

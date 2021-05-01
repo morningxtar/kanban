@@ -11,7 +11,7 @@ and back-end( JPA + JaxRS) via REST APIs.
 ## Design - Data
 We designed our database using this model
 
-![Quick illustration of the project](Images/sirtp.png)
+![Quick illustration of the project](Images/sirtp.PNG)
 
 
 ##  Getting Started
